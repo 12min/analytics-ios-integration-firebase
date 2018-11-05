@@ -18,8 +18,12 @@
             SEGLog(@"[FIROptions defaultOptions].deepLinkURLScheme = %@;", deepLinkURLScheme);
         }
 
-        [FIRApp configure];
-        SEGLog(@"[FIRApp Configure]");
+      @try {
+            SEGLog(@"[FIRApp Configure]");
+            [FIRApp configure];
+        } @catch ( NSException *e ) {
+            SEGLog(@"Error during [FIRApp Configure]: %@", e.reason);
+        }
     }
     return self;
 }
